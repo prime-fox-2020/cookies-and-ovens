@@ -78,7 +78,7 @@
 
 
 /* RELEASE 2 
-    Refactor code di atas dengan satu kelas dengan menggunakan factory method dari kelas Kue dengan menerima input flavor
+    Refactor code di atas dengan satu kelas dengan menggunakan static method dari kelas Kue dengan menerima input flavor
 */
 class Kue{
     constructor(bakingTime, flavor){
