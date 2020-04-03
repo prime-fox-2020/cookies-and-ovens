@@ -52,4 +52,6 @@ class Cook {
     }
 }
 
-Cook.oven(Cookies.flavour('kacang'), 28);
+Cook.oven(Cookies.flavour('kacang'), 30);
+console.log();
+Cook.oven(Cookies.flavour('keju'), 38, 10);
