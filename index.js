@@ -1,6 +1,6 @@
 // Answer These Questions:
 //
-// - What are essential classes? Easy to manage many properties that it has  
+// - What are essential classes? cookie's thing (coklat, keju, etc)
 // - What attributes will each class have? name, time, status
 // - What interface will each class provide? Cookie and Ovens
 // - How will the classes interact with each other? using aggregation
