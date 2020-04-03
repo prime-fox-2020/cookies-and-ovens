@@ -1,11 +1,19 @@
 // Answer These Questions:
 //
 // - What are essential classes?
+//  ** it's core of the code, and i built with some class
+
 // - What attributes will each class have?
+//  ** type 'cake' and 'cookTime'
+
 // - What interface will each class provide?
+//  ** data input from a user, data from another object, or anything that's not inside that very same object. 
+
 // - How will the classes interact with each other?
+//  ** with instance method
+
 // - Which classes will inherit from others, if any?
-//
+//  ** Cake class is a Parent, and Kue... is a child
 //
 // Your code here
 
