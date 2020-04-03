@@ -10,10 +10,9 @@
     Class memiliki method untuk mengecek progress pangang kue dengan input parameter interval pengecekan yang diinginkan, interval ini sebaiknya merupakan kelipatan
     dari bakingTime untuk memastikan bahwa saat kue sudah matang pada menit yang sama dengan inputan lama kue untuk dipanggang
 - How will the classes interact with each other?
-    class Kue akan bertindak sebagai parent dari class lainnya. class child KueRasa akan bertindak sebagai parent dari class Bahan
+    class Kue akan bertindak sebagai parent dari class KueRasa lainnya. class child KueRasa akan bergantung pada class Bahan
 - Which classes will inherit from others, if any?
     class KueRasa inherit dari class Kue
-    class KueRasa akan bergantung pada class Bahan
 */
 
 /*RELEASE 0 - 1 */
