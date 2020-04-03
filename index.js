@@ -84,5 +84,7 @@ let masak = new Oven();
 masak.rasaKue("Kue Cokelat")
 masak.rasaKue("Kue Kacang")
 masak.rasaKue("Kue Keju")
+masak.Cook(25)
+console.log("---------------------------------")
 masak.Cook(40)
 
