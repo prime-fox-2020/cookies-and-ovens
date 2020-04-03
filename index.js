@@ -10,43 +10,46 @@
 class Cookies {
     constructor(flavour) {
         this._flavour = flavour;
-        this._cookTime = this.timeToCook();
+        switch (this.flavour) {
+            case 'coklat':
+                this._cookTime = 20; break;
+            case 'kacang':
+                this._cookTime = 30; break;
+            case 'keju':
+                this._cookTime = 35; break;
+        }
+        this._status = '';
     }
     get flavour() {return this._flavour;}
     set flavour(param) {this._flavour = param;}
     get cookTime() {return this._cookTime;}
     set cookTime(param) {this._cookTime = param;}
+    get status() {return this._status}
+    set status(param) {this._status = param;}
 
-    timeToCook() {
-        switch (this.flavour) {
-            case  'coklat':
-                return 20;
-            case 'kacang':
-                return 30; 
-            case 'keju':
-                return 35; 
-        }
+    static flavour(flavour) {
+        return new Cookies(flavour);
     }
 }
 
 class Cook {
-    constructor() {
-        this._nowTime = 0;
-    }
-    get nowTime() {return this._nowTime;}
-    set nowTime(param) {this._nowTime = param;}
-    
-    static cookies(flavour, setTime) {
-        let baking = new Cookies(flavour);
-        if (setTime > baking.cookTime){
-            console.log(`Kue ${flavour} gosong`);
-        } else if (setTime == baking.cookTime) {
-            console.log(`Kue ${flavour} matang`);
-        } else {
-            console.log(`Kue ${flavour} mentah`);
+    static oven(biscuit, setTime, report = 5) {
+        let nowTime = 0;
+        while (nowTime < setTime){
+            nowTime++;
+            if (nowTime > biscuit.cookTime){
+                biscuit.status = 'gosong';
+            } else if (nowTime == biscuit.cookTime) {
+                biscuit.status = 'matang';
+            } else {
+                biscuit.status = 'mentah';
+            }
+            if (nowTime % report == 0 && nowTime != setTime) {
+                console.log(`Kue ${biscuit.flavour}, menit ke ${nowTime} : ${biscuit.status}`);
+            }
         }
+        console.log(`Kue ${biscuit.flavour}, menit ke ${nowTime} : ${biscuit.status}`);
     }
-    
 }
 
-Cook.cookies('keju', 34);
+Cook.oven(Cookies.flavour('kacang'), 28);
