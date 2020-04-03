@@ -3,11 +3,11 @@
 // kue keju 35
 
 class Kue {
-    constructor(menitan){
+    constructor(kue,menit){
     /// tambahin parameter nama kue
-        this.kue=""
-        this.menit = menitan
-        this.status = "";
+        this.kue = kue
+        this.menit = menit
+        this.status = "mentah";
     }
 
     kondisisemuakue(){
@@ -18,51 +18,70 @@ class Kue {
 }
 
 class Coklat extends Kue {
-    constructor(){
-        super(20)
+    constructor(kue,menit){
+        super(kue,menit)
     }
 }
 
 class Kacang extends Kue {
-    constructor(a){
-        super(a)
+    constructor(kue,menit){
+        super(kue,menit)
     }
 }
 
 class Keju extends Kue{
-    constructor(a){
-        super(a)
+    constructor(kue,menit){
+        super(kue,menit)
     }
 }
 
 class Oven {
-    constructor(Kue){
-        this.cake = Kue
+    constructor(kue,timer){
+        this.kue = kue
+        this.timer = timer
+        this.statusOven = ''
+
     }
-    bake(menit){
-        for(var i = 0 ; i<menit ; i+=5){
-            console.log(`Kue ${this.cake}, menit ke ${i}, `)
+    masakKue() {
+        console.log(`\nOven Sedang memasak ${this.kue.kue}, ${this.kue.status}`);
+        console.log(`waktu matang ${this.kue.menit} menit`)
+        for (let i = 0; i <= this.timer; i += 5) {
+            if (i < this.kue.menit / 2) {
+                this.statusOven = 'masih mentah'
+                console.log(`- Menit ${i}: ${this.statusOven}`);
+            } else if (i > this.kue.menit / 2 && i < this.kue.menit) {
+                this.statusOven = 'hampir matang'
+                console.log(`- Menit ${i}: ${this.statusOven}`);
+            } else if (i == this.kue.menit) {
+                this.statusOven = 'matang'
+                console.log(`- Menit ${i}: ${this.statusOven}`);
+            } else if (i > this.kue.menit) {
+                this.statusOven = 'gosong'
+                console.log(`- Menit ${i}: ${this.statusOven}`);
+            } 
         }
+        this.kue.status = this.statusOven
+        console.log(`Status: ${this.kue.kue}, ${this.kue.status}`);
 
     }
 }
 
 
-let command = Number(process.argv.slice(2,10))
-let menitan = command
+let timer = Number(process.argv.slice(2,10))
 
-const newkue = new Kue(menitan)
-const newKue1 = new Kue1(menitan)
-const newKue2 = new Kue2(menitan)
-const newKue3 = new Kue3(menitan)
+const newkue = new Kue()
+const newCoklat = new Coklat("kue coklat",20)
+const newKacang = new Kacang("kue kacang",30)
+const newKeju = new Keju("kue keju",35)
 
+let ovenreport = [newCoklat,newKacang,newKeju]
 
-if(menitan < 5){
-    console.log("Masukan Value Menit diatas 5 menit ; ex = <node index.js 6>")
-} else {
-    console.log(newkue.kondisisemuakue())
+if(timer == [] || timer < 20){
+    console.log(`masukin command minimal 20, contoh index.js 20`)
+}else{
+    ovenreport.forEach(el => {
+        const newOven = new Oven(el,timer)
+        newOven.masakKue()
+    });
 }
 
-
-
-// console.log(newkue)
