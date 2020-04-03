@@ -54,7 +54,6 @@ class Kue {
             console.log(`${this.nama}, menit ke ${this.waktuMasak} : ${this.status}`)
         }
     }
-
 }
 
 class KueCoklat extends Kue{
@@ -67,7 +66,6 @@ class KueCoklat extends Kue{
     cooking(){
         super.cooking()
     }
-    
 }
 
 class KueKeju extends Kue{
@@ -80,7 +78,6 @@ class KueKeju extends Kue{
     cooking(){
         super.cooking()
     }
-    
 }
 
 class KueKacang extends Kue{
@@ -93,7 +90,6 @@ class KueKacang extends Kue{
     cooking(){
         super.cooking()
     }
-    
 }
 
 let kueCoklat = new KueCoklat ('Kue Cokelat',20,'Mentah')
