@@ -96,5 +96,23 @@ class KueKacang extends Kue{
     
 }
 
+let kueCoklat = new KueCoklat ('Kue Cokelat',20,'Mentah')
+kueCoklat.tambahanBahan('Perasa Cokelat')
+
+let kueKeju = new KueCoklat ('Kue Keju',30,'Mentah')
+kueKeju.tambahanBahan('Perasa Cokelat')
+
+let kueKacang = new KueCoklat ('Kue Kacang',35,'Mentah')
+kueKacang.tambahanBahan('Perasa Cokelat')
+
+const namaKue = [kueCoklat,kueKeju,kueKacang]
+
+for (let i = 0; i < namaKue.length; i++) {
+    console.log(`\n ================= Pemasakan ${namaKue[i].nama} ===================`)
+    for (let j = 0; j < 8 ; j++) {
+        namaKue[i].cooking();
+    }
+}
+
 
 
