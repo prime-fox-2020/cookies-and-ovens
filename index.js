@@ -32,7 +32,7 @@ class Kue {
     get status() { 
         return this._status
     }
-
+ 
     cookAll () {
         for (let i = 0; i <= this.minute + 5; i+= 5) {
             if (i < this.name.minute - 5) {
