@@ -16,10 +16,12 @@
 // Your code here
 
 class Kue {
-    constructor(){
+    constructor(name, minute){
         this._waktuPanggang = 0
         this._status = ''
         this._panggangStopper = true
+        this.name = name
+        this.minute = minute
     }
     get panggangStopper() { 
         return this._panggangStopper
@@ -30,35 +32,55 @@ class Kue {
     get status() { 
         return this._status
     }
+
+    cookAll () {
+        for (let i = 0; i <= this.minute + 5; i+= 5) {
+            if (i < this.name.minute - 5) {
+                this._status = 'mentah'
+                console.log(`${this.name.name}, menit ke ${i} : ${this.status}`)
+            }
+            if (i === (this.name.minute - 5)) {
+                this._status = 'hampir matang'
+                console.log(`${this.name.name}, menit ke ${i} : ${this.status}`)
+            }
+            if (i == this.name.minute) {
+                this._status = 'matang'
+                console.log(`${this.name.name}, menit ke ${i} : ${this.status}`)
+            }
+            if (i >= this.name.minute + 5) {
+                this._status = 'hangus'
+                console.log(`${this.name.name}, menit ke ${i} : ${this.status}`)
+            }
+        }
+    }
 }
+
+console.log(`\n`)
+console.log(`=====================================`)
+console.log(`Generate by each Coklat, Kacang, Keju`)
+console.log(`=====================================`)
+console.log(`\n`)
 
 // ======
 // Coklat
 // ======
 
-class Coklat extends Kue {
-    cook (max = 20) {
+class Coklat extends Kue {     
+    constructor (name, minute){
+        super(name, minute)
+    }
+    cook (max = 20) { // input 1.1
         this._waktuPanggang += 5
-        if (this._waktuPanggang < max) {
-            this._status = 'mentah'
-        }
-        if (this._waktuPanggang === (max - 5)) {
-            this._status = 'hampir matang'
-        }
-        if (this._waktuPanggang === max) {
-            this._status = 'matang'
-        }
-        if (this._waktuPanggang >= max + 1) {
-            this._status = 'hangus'
-        }
-        if (this._waktuPanggang > max + 1) {
-            this._panggangStopper = false
-        }
+        if (this._waktuPanggang < max) this._status = 'mentah';
+        if (this._waktuPanggang === (max - 5)) this._status = 'hampir matang';
+        if (this._waktuPanggang === max) this._status = 'matang';
+        if (this._waktuPanggang >= max + 1) this._status = 'hangus';
+        if (this._waktuPanggang > max + 1) this._panggangStopper = false;
         return this
     }
 }
+
 let coco = new Coklat()
-console.log(`\n`)
 do {
     coco.cook()
     console.log(`Kue cokelat, menit ke ${coco.waktuPanggang} : ${coco.status}`)
@@ -70,23 +92,16 @@ console.log(`\n`)
 // ====== 
 
 class Kacang extends Kue {
-    cook (max = 30) {
+    constructor (name, minute){
+        super(name, minute)
+    }
+    cook (max = 30) { // input 1.2
         this._waktuPanggang += 5
-        if (this._waktuPanggang < max) {
-            this._status = 'mentah'
-        }
-        if (this._waktuPanggang === (max - 5)) {
-            this._status = 'hampir matang'
-        }
-        if (this._waktuPanggang === max) {
-            this._status = 'matang'
-        }
-        if (this._waktuPanggang >= max + 1) {
-            this._status = 'hangus'
-        }
-        if (this._waktuPanggang > max + 1) {
-            this._panggangStopper = false
-        }
+        if (this._waktuPanggang < max) this._status = 'mentah'
+        if (this._waktuPanggang === (max - 5)) this._status = 'hampir matang'
+        if (this._waktuPanggang === max) this._status = 'matang'
+        if (this._waktuPanggang >= max + 1) this._status = 'hangus'
+        if (this._waktuPanggang > max + 1) this._panggangStopper = false
         return this
     }
 }
@@ -102,23 +117,16 @@ console.log(`\n`)
 // ====
 
 class Keju extends Kue {
-    cook (max = 35) {
+    constructor(name, minute) {
+        super(name, minute)
+    }
+    cook (max = 35) { // input 1.3
         this._waktuPanggang += 5
-        if (this._waktuPanggang < max) {
-            this._status = 'mentah'
-        }
-        if (this._waktuPanggang === (max - 5)) {
-            this._status = 'hampir matang'
-        }
-        if (this._waktuPanggang === max) {
-            this._status = 'matang'
-        }
-        if (this._waktuPanggang >= max + 1) {
-            this._status = 'hangus'
-        }
-        if (this._waktuPanggang > max + 1) {
-            this._panggangStopper = false
-        }
+        if (this._waktuPanggang < max) this._status = 'mentah';
+        if (this._waktuPanggang === (max - 5)) this._status = 'hampir matang';
+        if (this._waktuPanggang === max) this._status = 'matang';
+        if (this._waktuPanggang >= max + 1) this._status = 'hangus';
+        if (this._waktuPanggang > max + 1) this._panggangStopper = false;
         return this
     }
 }
@@ -128,3 +136,24 @@ do {
     console.log(`Kue keju, menit ke ${cheese.waktuPanggang} : ${cheese.status}`)
 } while (cheese._panggangStopper);
 console.log(`\n`)
+
+
+console.log(`==================================`)
+console.log(`Generate by Kue's 'cookAll' method`)
+console.log(`==================================`)
+
+let chocolateCake = new Coklat('Kue Coklat', 20) // input 2.1
+let peanutCake = new Kacang('Kue Kacang', 30)    // input 2.2
+let cheezeCake = new Keju('Kue Keju', 35)        // input 2.3
+let arrOfCakes = [chocolateCake, peanutCake, cheezeCake]
+let temp = 0
+for (let k = 0; k < arrOfCakes.length; k++) {
+    if (temp < arrOfCakes[k].minute) {
+        temp = arrOfCakes[k].minute
+    }    
+    console.log('\n')
+    let cooking = new Kue(arrOfCakes[k], temp)
+    cooking.cookAll();
+}
+console.log('\n')
+
