@@ -41,8 +41,6 @@ class Kue {
     let keys = Object.keys(this._statusList)
     let index = keys.filter(el => this.bakingTime >= el)
     this.status = this._statusList[index[index.length - 1]]
-    // console.log(this._statusList[keys[index]])
-    console.log(index)
   }
 }
 
@@ -79,12 +77,6 @@ class KueKeju extends Kue {
       35: 'Matang',
       45: 'Hangus'
     }
-    // [
-    //   {'Mentah': 25},
-    //   {'Hampir matang': 30},
-    //   {'Matang': 35},
-    //   {'Hangus': 45}
-    // ]
   }
 }
 class Oven {
@@ -97,7 +89,7 @@ class Oven {
   }
   
   addCookie(obj) {
-    if (typeof obj === 'object') this._cookies.push(obj)
+    if (obj instanceof Kue) this._cookies.push(obj)
   }
 
   bake(num) {
@@ -105,10 +97,6 @@ class Oven {
       el.bakingTime = num
       el.updateStatus()
     })
-  }
-
-  report() {
-
   }
 
   static prepareCookies(type, time) {
@@ -125,8 +113,7 @@ const oven1 = new Oven()
 oven1.addCookie(Oven.prepareCookies('KueKeju'))
 oven1.addCookie(Oven.prepareCookies('KueKacang'))
 oven1.addCookie(Oven.prepareCookies('KueCoklat', 50))
-oven1.cookies[1]._name = 'mutated'
 
-console.log(oven1.cookies)
+// console.log(oven1.cookies)
 oven1.bake(33)
 console.log(oven1.cookies)
